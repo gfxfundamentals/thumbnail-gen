@@ -1,4 +1,10 @@
-<canvas></canvas>
+<style>
+canvas {
+  display: block;
+  padding: 1em;
+  max-width: calc(100vw - 10px - 2em);
+}
+</style>
 <script src="thumbnail-gen.js"></script>
 <script>
 'use strict';
@@ -14,20 +20,28 @@ async function loadImage(src) {
 
 async function main() {
   const logo = await loadImage('https://webglfundamentals.org/webgl/lessons/resources/webglfundamentals.jpg');
-  const canvas = document.querySelector('canvas');
-  canvas.width = logo.width;
-  canvas.height = logo.height;
-  genThumbnail({
-    backgroundImage: logo, 
-    canvas, 
-    text: 'Planar and Perspective Projection Mapping',
-    font: 'bold 100px sans-serif',
-    verticalSpacing: 100,
-    offset: [100, 120],
-    shadowOffset: [15, 15],
-    strokeWidth: 15,
-    textWrapWidth: 1000,
-  });
+  for (const text of [
+    'Planar and Perspective Projection Mapping',
+    'WordThatIsTooLongToDisplay Projection Mapping',
+    'WebGLにおける画像処理。続き',
+    'WebGL 纹理映射的透视纠正',
+  ]) {
+    const canvas = document.createElement('canvas');
+    document.body.appendChild(canvas);
+    canvas.width = logo.width;
+    canvas.height = logo.height;
+    genThumbnail({
+      backgroundImage: logo, 
+      canvas, 
+      text,
+      font: 'bold 100px sans-serif',
+      verticalSpacing: 100,
+      offset: [100, 120],
+      shadowOffset: [15, 15],
+      strokeWidth: 15,
+      textWrapWidth: 1000,
+    });
+  }
 }
 main();
 
