@@ -40,13 +40,27 @@
           const newStr = `${str} ${word}`;
           const m = ctx.measureText(newStr);
           if (m.width > textWrapWidth || !word) {
+            let cut = '';
+            while (str.length) {
+              const m = ctx.measureText(str);
+              if (m.width <= textWrapWidth) {
+                break;
+              }
+              cut = `${str[str.length - 1]}${cut}`;
+              str = str.substr(0, str.length - 1);
+            }
             if (stroke) {
               ctx.strokeText(str, x, y);
             } else {
               ctx.fillText(str, x, y);
             }
             y += verticalSpacing;
-            str = word;
+            if (cut) {
+              str = cut;
+              words.push(word);
+            } else {
+              str = word;
+            }
           } else {
             str = newStr;
           }
