@@ -19,7 +19,7 @@ async function loadImage(src) {
 }
 
 async function main() {
-  const logo = await loadImage('https://webglfundamentals.org/webgl/lessons/resources/webglfundamentals.jpg');
+  const logo = await loadImage('http://localhost:8080/threejs/lessons/resources/threejsfundamentals-background.jpg');
   for (const text of [
     'Planar and Perspective Projection Mapping',
     'WordThatIsTooLongToDisplay Projection Mapping',
@@ -33,13 +33,29 @@ async function main() {
     genThumbnail({
       backgroundImage: logo, 
       canvas, 
-      text,
-      font: 'bold 100px sans-serif',
-      verticalSpacing: 100,
-      offset: [100, 120],
-      shadowOffset: [15, 15],
-      strokeWidth: 15,
-      textWrapWidth: 1000,
+      text: [
+        {
+          text,
+          font: 'bold 100px sans-serif',
+          textAlign: 'left',
+          verticalSpacing: 100,
+          offset: [100, 150],
+          shadowOffset: [15, 15],
+          strokeWidth: 15,
+          textWrapWidth: 1000,
+        },
+        {
+          text: 'threejsfundamentals.org',
+          offset: [-100, -90],
+          font: 'bold 60px sans-serif',
+          textAlign: 'right',
+          verticalSpacing: 100,
+          shadowOffset: [8, 8],
+          strokeWidth: 15,
+          textWrapWidth: 1000,
+          color: 'hsl(340, 100%, 70%)',
+        },
+      ],
     });
   }
 }
