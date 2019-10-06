@@ -1,6 +1,6 @@
 {
   "name": "@gfxfundamentals/thumbnail-gen",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "generate thumbnails for lessons",
   "main": "thumbnail-gen.js",
   "scripts": {
