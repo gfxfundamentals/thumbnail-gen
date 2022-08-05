@@ -34,7 +34,9 @@
       }
 
       const ctx = canvas.getContext('2d');
-      ctx.drawImage(backgroundImage, 0, 0);
+      ctx.drawImage(backgroundImage,
+          0, 0, backgroundImage.width, backgroundImage.height,
+          0, 0, ctx.canvas.width, ctx.canvas.height);
 
       for (const t of text) {
         const {
